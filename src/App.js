@@ -5,6 +5,7 @@ import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 
 function App() {
+  //defining in app.js allows to use in other components, cant go from lower level to upper level(form to todo)
   //empty string reset the text after enter
   const [inputText, setInputText] = useState("");
   //todo list items
@@ -21,7 +22,7 @@ function App() {
         setTodos={setTodos}
         setInputText={setInputText}
       />
-      <TodoList />
+      <TodoList setTodos={setTodos} todos={todos} />
     </div>
   );
 }
