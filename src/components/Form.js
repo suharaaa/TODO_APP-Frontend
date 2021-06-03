@@ -6,11 +6,13 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
     setInputText(e.target.value);
   };
   const submitTodoHandler = (e) => {
+      //stop default refresh
     e.preventDefault();
     setTodos([
       //if theres items in the list just pass it
       //object- if theres a new one, add the new one
       ...todos,
+      //id: Math.random() * 1000 - makes random id s
       { text: inputText, completed: false, id: Math.random() * 1000 },
     ]);
     //make input field reset by setting value={inputText}
