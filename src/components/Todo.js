@@ -1,13 +1,33 @@
 import React from "react";
 
-const Todo = () => {
+const Todo = ({ text, setTodos, todos, todo }) => {
+  //events
+  const deleteHandler = () => {
+    setTodos(todos.filter((el) => el.id !== todo.id));
+  };
+  const completeHandler = () => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return {
+            //...item- keep other items, only change this
+            ...item,
+            completed: !item.completed,
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <div className="todo">
-      <li className="todo-item">hi</li>
-      <button className="complete-btn"> 
+        {/* ternary: if todo is done change style */}
+      <li className={`todo-item ${todo.completed ? "completed" : ''}`}>{text}</li>
+      <button onClick={completeHandler} className="complete-btn">
         <i className="fas fa-check"></i>
       </button>
-      <button className="trash-btn">
+      <button onClick={deleteHandler} className="trash-btn">
         <i className="fas fa-trash"></i>
       </button>
     </div>
